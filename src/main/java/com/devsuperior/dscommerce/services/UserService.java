@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class UserService implements UserDetailsService {
         }
 
         User user = new User();
-        user.setEmail(username);
+        user.setEmail(result.get(0).getUsername());
         user.setPassword(result.get(0).getPassword());
 
         for (UserDetailsProjection projection : result) {
